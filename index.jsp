@@ -6,7 +6,7 @@
 <body>
     <h1>Welcome to My DevOps Final Project</h1>
     <form action="result.jsp" method="post">
-        Enter your name: <input type="text" name="username" required>
+        Enter your name please: <input type="text" name="username" required>
         <br><br>
         <input type="submit" value="Say Hello">
     </form>
