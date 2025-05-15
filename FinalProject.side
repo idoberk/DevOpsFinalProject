@@ -1,0 +1,105 @@
+{
+  "id": "276af009-31b0-480b-9658-98c0efd7ff1b",
+  "version": "2.0",
+  "name": "FinalProject",
+  "url": "http://localhost:8090",
+  "tests": [{
+    "id": "1ab732da-edf9-4324-974c-74f9b0907b85",
+    "name": "Automated testing",
+    "commands": [{
+      "id": "5103342a-dba9-4390-98cf-8de4d439451b",
+      "comment": "",
+      "command": "open",
+      "target": "/DanielMorIdoTami/index.jsp",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "0d02b59c-639b-4a58-83a2-363d577445a3",
+      "comment": "",
+      "command": "assertElementPresent",
+      "target": "css=h1",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "55d8ec38-d9ee-4d00-9823-fdd556b855ba",
+      "comment": "",
+      "command": "click",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cc21066a-49a3-49d0-9f9c-6a021f3de5db",
+      "comment": "",
+      "command": "type",
+      "target": "name=username",
+      "targets": [
+        ["name=username", "name"],
+        ["css=input:nth-child(1)", "css:finder"],
+        ["xpath=//input[@name='username']", "xpath:attributes"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": "TestUser"
+    }, {
+      "id": "50754adb-c7ea-43e9-9525-62f67d243d39",
+      "comment": "",
+      "command": "click",
+      "target": "css=input[type=\"submit\"]",
+      "targets": [
+        ["css=input:nth-child(4)", "css:finder"],
+        ["xpath=//input[@value='Say Hello']", "xpath:attributes"],
+        ["xpath=//input[2]", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "41550111-3f6e-49cf-acd9-00054e27e48d",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=h1",
+      "targets": [],
+      "value": "5000"
+    }, {
+      "id": "9a591dd3-3ce7-4a55-93e9-0e9245997d9b",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1",
+      "targets": [],
+      "value": "Hello, TestUser!"
+    }, {
+      "id": "d2a5b158-f9ef-42c2-aac8-5401d76a9088",
+      "comment": "",
+      "command": "click",
+      "target": "linkText=Back to Home",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "363f9a71-da15-49e5-83a4-6f14367cb46d",
+      "comment": "",
+      "command": "waitForElementPresent",
+      "target": "css=h1",
+      "targets": [],
+      "value": "5000"
+    }, {
+      "id": "1f0c423a-6e18-4661-a745-cbfd728b0adf",
+      "comment": "",
+      "command": "assertText",
+      "target": "css=h1",
+      "targets": [],
+      "value": "Welcome to My DevOps Final Project"
+    }]
+  }],
+  "suites": [{
+    "id": "20689df8-11e7-461b-b711-4ffe93f52914",
+    "name": "",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": ["1ab732da-edf9-4324-974c-74f9b0907b85"]
+  }],
+  "urls": ["http://localhost:8090/"],
+  "plugins": []
+}
