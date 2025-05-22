@@ -77,7 +77,6 @@
             padding: 15px;
             border-radius: 5px;
             margin: 20px 0;
-            display: none;
         }
         .navigation {
             text-align: center;
@@ -109,30 +108,54 @@
         </div>
 
         <div class="navigation">
-            <a href="#" id="homeLink">🏠 Home</a>
-            <a href="#" id="aboutLink">ℹ️ About</a>
-            <a href="#" id="contactLink">📧 Contact</a>
-            <a href="#" id="githubLink">🐙 GitHub</a>
+            <a href="#home" id="homeLink">🏠 Home</a>
+            <a href="#about" id="aboutLink">ℹ️ About</a>
+            <a href="#contact" id="contactLink">📧 Contact</a>
+            <a href="https://github.com" target="_blank" id="githubLink">🐙 GitHub</a>
         </div>
+
+        <%
+            // Get form parameters
+            String studentName = request.getParameter("studentName");
+            String studentEmail = request.getParameter("studentEmail");
+            String message = request.getParameter("message");
+            boolean formSubmitted = studentName != null && !studentName.trim().isEmpty();
+        %>
+
+        <% if (formSubmitted) { %>
+            <div class="result" id="resultSection">
+                <h3>✅ Welcome Message Generated!</h3>
+                <p><strong>Student Name:</strong> <%= studentName %></p>
+                <p><strong>Email:</strong> <%= studentEmail != null ? studentEmail : "Not provided" %></p>
+                <p><strong>Message:</strong> <%= message != null ? message : "No message provided" %></p>
+                <p><strong>Timestamp:</strong> <%= new java.util.Date() %></p>
+            </div>
+        <% } %>
 
         <div class="form-section">
             <h2>📝 Student Registration Form</h2>
-            <div class="input-group">
-                <label for="studentName">Student Name: *</label>
-                <input type="text" id="studentName" name="studentName" 
-                       placeholder="Enter your full name">
-            </div>
-            
-            <div class="input-group">
-                <label for="studentEmail">Email Address:</label>
-                <input type="email" id="studentEmail" name="studentEmail" 
-                       placeholder="Enter your email address">
-            </div>
-            
-            <button type="button" class="btn" id="submitBtn">🚀 Submit Registration</button>
-            <button type="button" class="btn btn-secondary" id="clearBtn">🔄 Clear Form</button>
-            
-            <div id="result" class="result"></div>
+            <form method="post" action="index.jsp" id="studentForm">
+                <div class="input-group">
+                    <label for="studentName">Student Name: *</label>
+                    <input type="text" id="studentName" name="studentName" 
+                           placeholder="Enter your full name" required>
+                </div>
+                
+                <div class="input-group">
+                    <label for="studentEmail">Email Address:</label>
+                    <input type="email" id="studentEmail" name="studentEmail" 
+                           placeholder="Enter your email address">
+                </div>
+                
+                <div class="input-group">
+                    <label for="message">Message/Comments:</label>
+                    <input type="text" id="message" name="message" 
+                           placeholder="Enter any comments or questions">
+                </div>
+                
+                <button type="submit" class="btn" id="submitBtn">🚀 Submit Registration</button>
+                <button type="reset" class="btn btn-secondary" id="resetBtn">🔄 Clear Form</button>
+            </form>
         </div>
 
         <div class="form-section">
@@ -148,8 +171,9 @@
             </ul>
             
             <p>
-                <a href="#" class="btn" id="pipelineBtn">⚙️ Trigger CI/CD Pipeline</a>
-                <a href="#" class="btn btn-secondary" id="testBtn">🧪 Run Tests</a>
+                <a href="#" onclick="alert('Jenkins pipeline triggered!'); return false;" 
+                   class="btn" id="pipelineBtn">⚙️ Trigger CI/CD Pipeline</a>
+                <a href="#" onclick="showAlert()" class="btn btn-secondary" id="testBtn">🧪 Run Tests</a>
             </p>
         </div>
 
@@ -161,64 +185,25 @@
     </div>
 
     <script>
-        // Handle navigation links without page refresh
-        document.getElementById('homeLink').onclick = function(e) {
+        function showAlert() {
+            alert('Test suite executed successfully!\n✅ Form validation test: PASSED\n✅ Navigation test: PASSED\n✅ Submit functionality: PASSED');
+        }
+        
+        // Add some interactivity for testing
+        document.getElementById('homeLink').addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('statusMessage').innerText = 'Navigation: Home section accessed';
-        };
+        });
         
-        document.getElementById('aboutLink').onclick = function(e) {
+        document.getElementById('aboutLink').addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('statusMessage').innerText = 'Navigation: About section accessed';
-        };
+        });
         
-        document.getElementById('contactLink').onclick = function(e) {
+        document.getElementById('contactLink').addEventListener('click', function(e) {
             e.preventDefault();
             document.getElementById('statusMessage').innerText = 'Navigation: Contact section accessed';
-        };
-        
-        document.getElementById('githubLink').onclick = function(e) {
-            e.preventDefault();
-            document.getElementById('statusMessage').innerText = 'Navigation: GitHub section accessed';
-        };
-        
-        // Handle form submission without page refresh
-        document.getElementById('submitBtn').onclick = function() {
-            var name = document.getElementById('studentName').value;
-            var email = document.getElementById('studentEmail').value;
-            
-            if (name.trim()) {
-                var currentTime = new Date().toLocaleString();
-                document.getElementById('result').innerHTML = 
-                    '<h3>✅ Welcome Message Generated!</h3>' +
-                    '<p><strong>Student Name:</strong> ' + name + '</p>' +
-                    '<p><strong>Email:</strong> ' + (email || 'Not provided') + '</p>' +
-                    '<p><strong>Timestamp:</strong> ' + currentTime + '</p>';
-                document.getElementById('result').style.display = 'block';
-                document.getElementById('statusMessage').innerText = 'Registration submitted successfully! ✅';
-            } else {
-                document.getElementById('statusMessage').innerText = 'Please enter your name';
-            }
-        };
-        
-        // Handle form clearing
-        document.getElementById('clearBtn').onclick = function() {
-            document.getElementById('studentName').value = '';
-            document.getElementById('studentEmail').value = '';
-            document.getElementById('result').style.display = 'none';
-            document.getElementById('statusMessage').innerText = 'Form cleared - Ready for new input';
-        };
-        
-        // Handle DevOps action buttons
-        document.getElementById('pipelineBtn').onclick = function(e) {
-            e.preventDefault();
-            document.getElementById('statusMessage').innerText = 'CI/CD Pipeline triggered! ⚙️';
-        };
-        
-        document.getElementById('testBtn').onclick = function(e) {
-            e.preventDefault();
-            document.getElementById('statusMessage').innerText = 'Test suite executed successfully! 🧪';
-        };
+        });
     </script>
 </body>
 </html>
