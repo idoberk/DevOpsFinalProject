@@ -186,7 +186,7 @@
 
     <script>
         function showAlert() {
-            alert('Test suite executed successfully!\n✅ Form validation test: PASSED\n✅ Navigation test: PASSED\n✅ Submit functionality: PASSED');
+            alert('Test suite executed successfully\n✅ Form validation test: PASSED\n✅ Navigation test: PASSED\n✅ Submit functionality: PASSED');
         }
         
         // Add some interactivity for testing
