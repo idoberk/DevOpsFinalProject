@@ -3,7 +3,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>HIT DevOps Final Project - Student Portal</title>
+    <title>HIT DevOps Final Project - Students Portal</title>
     <style>
         body {
             font-family: Arial, sans-serif;
